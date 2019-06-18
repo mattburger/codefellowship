@@ -17,12 +17,37 @@ public class AppUser implements UserDetails {
 
     String username;
     String password;
+    String firstName;
+    String lastName;
+    String dateOfBirth;
+    String bio;
+
 
     public AppUser(){}
 
-    public AppUser(String username, String password) {
+    public AppUser(String username, String password, String firstName, String lastName, String dateOfBirth, String bio) {
         this.username = username;
         this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.bio = bio;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public String getDateOfBirth() {
+        return this.dateOfBirth;
+    }
+
+    public String getBio() {
+        return this.bio;
     }
 
     @Override

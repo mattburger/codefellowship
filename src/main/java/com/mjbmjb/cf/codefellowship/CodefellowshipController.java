@@ -12,8 +12,8 @@ public class CodefellowshipController {
     @GetMapping("/")
     public String getCodefellowship(Principal p, Model m) {
 
-        System.out.println(p.getName());
-        m.addAttribute("principal", p);
+//        System.out.println(p.getName());
+//        m.addAttribute("principal", p);
         return "codefellowship";
     }
 }
