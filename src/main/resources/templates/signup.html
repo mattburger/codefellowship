@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/headStuff :: headStuff">
     <meta charset="UTF-8">
     <title>Log in to Lab 16 Demo</title>
 </head>
 <body>
-<h1>Log in</h1>
+<header th:replace="fragments/header :: header">...</header>
+<h1>Sign up</h1>
 <form action="/signup" method="POST">
 
     <label for="firstName">Your first name: </label>
@@ -25,7 +26,7 @@
     <input name="username" id="username" />
 
     <label for="password">Your Desired Password</label>
-    <input name="password" id="password" />
+    <input name="password" id="password" type="password" />
 
     <input type="submit" />
 </form>

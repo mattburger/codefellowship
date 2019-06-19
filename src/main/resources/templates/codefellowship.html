@@ -1,17 +1,14 @@
-<html>
-    <head>
-        <title>Home</title>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+    <head th:replace="/fragments/headStuff :: headStuff">
     </head>
 
     <body>
+
+        <header th:replace="/fragments/header :: header"></header>
+
         <h1>Welcome!</h1>
         <p>
-            <a href="/logout" > Logout</a>
-
-        </p>
-        <p>
-            This homepage is part of Code Fellows 401 Java lab 16 "Spring Auth". <a href="/signup"> This is a link to the signup page.</a>
-            If you are already registered: <a href="/login">login</a>
+            This homepage is part of Code Fellows 401 Java lab 16 "Spring Auth".
         </p>
     </body>
 

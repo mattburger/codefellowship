@@ -1,12 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>My Profile</title>
-</head>
+<head th:replace="fragments/headStuff :: headStuff">...</head>
     <body>
+        <header th:replace="fragments/header :: header">...</header>
         <h1>My Profile</h1>
-        <p>
-            <a href="/logout" > Logout</a>
-        </p>
         <ul>
             <li>
                 <img src= "https://images.unsplash.com/photo-1489389944381-3471b5b30f04?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" >
@@ -17,5 +13,12 @@
             <li>DOB: <span th:text="${user.dateOfBirth}"></span></li>
             <li>Bio: <span th:text="${user.bio}"></span></li>
         </ul>
+        <h2>My Posts</h2>
+            <ul>
+                <li th:each="post : ${myPosts}">
+                    (<span th:text="${post.createdAt}"></span>)
+                    <span th:text="${post.body}"></span>
+                </li>
+            </ul>
     </body>
 </html>

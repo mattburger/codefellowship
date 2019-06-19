@@ -15,12 +15,17 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class AppUserController {
 
     @Autowired
     AppUserRepository appUserRepository;
+
+    @Autowired
+    PostRepository postRepository;
 
     @Autowired
     PasswordEncoder bCryptPasswordEncoder;
@@ -55,6 +60,9 @@ public class AppUserController {
     public String getMyProfile(Principal p, Model m) {
         AppUser user = appUserRepository.findByUsername(p.getName() );
         m.addAttribute("user", user);
+        Iterable<Post> myPosts = postRepository.findByUsername(p.getName());
+        m.addAttribute("myPosts", myPosts);
+
         return "myprofile";
     }
     @GetMapping("/users/{username}")
@@ -64,5 +72,15 @@ public class AppUserController {
         return "myprofile";
     }
 
+    @GetMapping("/createPost")
+    public String getCreatePost() { return "createpost"; }
+
+    @PostMapping("/createPost")
+    public RedirectView createPost(Principal p, String body) {
+        AppUser user = appUserRepository.findByUsername(p.getName());
+        Post newPost = new Post(body, user, p.getName());
+        postRepository.save(newPost);
+        return new RedirectView("/myProfile");
+    }
 
 }

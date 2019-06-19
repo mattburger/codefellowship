@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Log in to Lab 16 Demo</title>
-</head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/headStuff :: headStuff">...</head>
 <body>
+<header th:replace="fragments/header :: header">...</header>
 <h1>Log in</h1>
 <form action="/login" method="POST">
     <label>Username: </label>
     <input name="username" />
 
     <label>Password: </label>
-    <input name="password" />
+    <input name="password" type="password" />
 
     <input type="submit" />
 </form>
