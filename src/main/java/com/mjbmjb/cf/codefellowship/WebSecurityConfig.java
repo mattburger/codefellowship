@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 
                     //allow requests to all URLs that match the patterns even if not logged in
-                    .antMatchers("/", "/login", "/signup", "/logoutSuccess").permitAll()
+                    .antMatchers("/", "/login", "/signup", "/logoutSuccess","/*.css").permitAll()
 
                     // anything else, you must be logged in
                     .anyRequest().authenticated()

@@ -1,0 +1,14 @@
+<!--https://css-snippets.com/simple-horizontal-navigation/-->
+<header th:fragment="header" xmlns:th="http://www.springframework.org/schema/security"
+        xmlns:sec="http://www.w3.org/1999/xhtml">
+    <div class="nav">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li sec:authorize="isAnonymous()"><a href="/login">login</a></li>
+            <li sec:authorize="isAnonymous()"><a href="/signup">signup</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/myProfile">My Profile</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/createPost">Create Post</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+</header>

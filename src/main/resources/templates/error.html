@@ -1,0 +1,38 @@
+<!--https://github.com/codefellows/seattle-java-401d4/blob/master/class-16/demo/dinosaurs/src/main/resources/templates/error.html-->
+<!--Much thanks to Michelle for allowing our class to use her error.html code!-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+</head>
+<body>
+<h3>Error</h3>
+
+<img src="https://i.ytimg.com/vi/g_vZasFzMN4/maxresdefault.jpg"
+     alt="Jurassic park pic. All rights to this pic belongs to the proper owner.
+     I do not own this picture or any associations with it outside of this code"
+    height="400" width="500"
+/>
+
+<table>
+    <tr>
+        <td>Path</td>
+        <td th:text="${path}"/>
+    </tr>
+    <tr>
+        <td>Error</td>
+        <td th:text="${error}"/>
+    </tr>
+    <tr>
+        <td>Status</td>
+        <td th:text="${status}"/>
+    </tr>
+    <tr>
+        <td>Message</td>
+        <td th:text="${message}"/>
+    </tr>
+</table>
+</body>
+</html>

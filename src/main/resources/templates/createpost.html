@@ -1,0 +1,16 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <head th:replace="fragments/headStuff :: headStuff">...</head>
+
+    <body>
+
+        <header th:replace="fragments/header :: header">...</header>
+
+        <label for="postform">New Post</label>
+        <form action="/createPost" method="POST" id="postform">
+            <textarea rows="10" cols="75" name="body" id="body" form="postform"></textarea>
+            <input type="submit" />
+        </form>
+    </body>
+
+</html>
