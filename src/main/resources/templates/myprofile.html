@@ -1,11 +1,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/headStuff :: headStuff">...</head>
     <body>
-        <header th:replace="fragments/header :: header">...</header>
+        <header th:replace="${principal == null } ? ~{/fragments/loggedOffHeader :: loggedOffHeader} : ~{/fragments/header :: header}">
+        </header>
+
         <h1>My Profile</h1>
         <ul>
             <li>
-                <img src= "https://images.unsplash.com/photo-1489389944381-3471b5b30f04?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" >
+                <img src="https://image.flaticon.com/icons/png/512/149/149071.png"
+                     width="150" height="150"
+                />
             </li>
             <li>Username: <span th:text="${user.username}"></span></li>
             <li>First: <span th:text="${user.firstName}"></span></li>
@@ -15,7 +19,7 @@
         </ul>
         <h2>My Posts</h2>
             <ul>
-                <li th:each="post : ${myPosts}">
+                <li th:each="post : ${posts}">
                     (<span th:text="${post.createdAt}"></span>)
                     <span th:text="${post.body}"></span>
                 </li>
