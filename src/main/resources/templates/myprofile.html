@@ -17,12 +17,16 @@
             <li>DOB: <span th:text="${user.dateOfBirth}"></span></li>
             <li>Bio: <span th:text="${user.bio}"></span></li>
         </ul>
+
+        <h2>Users you Follow</h2>
+
         <h2>My Posts</h2>
-            <ul>
-                <li th:each="post : ${posts}">
-                    (<span th:text="${post.createdAt}"></span>)
-                    <span th:text="${post.body}"></span>
-                </li>
-            </ul>
+        <ul>
+            <li th:each="post : ${posts}">
+                (<span th:text="${post.createdAt}"></span>)
+                <span th:text="${post.body}"></span>
+            </li>
+        </ul>
+
     </body>
 </html>

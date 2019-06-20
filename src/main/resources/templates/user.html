@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/headStuff :: headStuff">...</head>
+<body>
+<header th:replace="${principal == null } ? ~{/fragments/loggedOffHeader :: loggedOffHeader} : ~{/fragments/header :: header}">
+</header>
+
+<h1>User Page</h1>
+<ul>
+    <li>
+        <img src="https://image.flaticon.com/icons/png/512/149/149071.png"
+             width="150" height="150"
+        />
+    </li>
+    <li>Username: <span th:text="${user.username}"></span></li>
+    <li>First: <span th:text="${user.firstName}"></span></li>
+    <li>Last: <span th:text="${user.lastName}"></span></li>
+    <li>DOB: <span th:text="${user.dateOfBirth}"></span></li>
+    <li>Bio: <span th:text="${user.bio}"></span></li>
+</ul>
+
+<h2>Users you Follow</h2>
+
+<h2>My Posts</h2>
+<ul>
+    <li th:each="post : ${posts}">
+        (<span th:text="${post.createdAt}"></span>)
+        <span th:text="${post.body}"></span>
+    </li>
+</ul>
+
+</body>
+</html>

@@ -17,6 +17,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class AppUserController {
@@ -59,12 +60,27 @@ public class AppUserController {
     @GetMapping("/myProfile")
     public String getMyProfile(Principal p, Model m) {
         AppUser user = appUserRepository.findByUsername(p.getName() );
+        Set<AppUser> usersToFollow = user.followedUsers;
+        usersToFollow.remove(user);
+        usersToFollow.remove(user.followedUsers);
         m.addAttribute("user", user);
         m.addAttribute("posts", user.posts);
-//        m.addAttribute("principal", p);
+        m.addAttribute("usersToFollow", usersToFollow);
+
 
         return "myprofile";
     }
+
+    @PostMapping("/myProfile/follow")
+    public RedirectView followUser(Principal p, Long userToFollowId, Model m) {
+        AppUser currUser = appUserRepository.findByUsername(p.getName());
+        AppUser userToFollow = appUserRepository.findById(userToFollowId).get();
+        currUser.followedUsers.add(userToFollow);
+        appUserRepository.save(currUser);
+
+        return new RedirectView("/myProfile");
+    }
+
     @GetMapping("/users/{username}")
     public String getUserData(@PathVariable String username, Model m) {
         AppUser user = appUserRepository.findByUsername(username);
