@@ -60,8 +60,8 @@ public class AppUserController {
     public String getMyProfile(Principal p, Model m) {
         AppUser user = appUserRepository.findByUsername(p.getName() );
         m.addAttribute("user", user);
-        Iterable<Post> myPosts = postRepository.findByUsername(p.getName());
-        m.addAttribute("myPosts", myPosts);
+        m.addAttribute("posts", user.posts);
+//        m.addAttribute("principal", p);
 
         return "myprofile";
     }

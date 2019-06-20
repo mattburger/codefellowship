@@ -1,8 +1,10 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
     <head th:replace="fragments/headStuff :: headStuff">...</head>
     <body>
-        <header th:replace="fragments/header :: header">...</header>
-        <p>Logout success!</p>
+    <header th:replace="${principal == null } ? ~{/fragments/loggedOffHeader :: loggedOffHeader} : ~{/fragments/header :: header}">
+    </header>
+
+    <p>Logout success!</p>
         <p>
             <a href="/">homepage</a>
         </p>

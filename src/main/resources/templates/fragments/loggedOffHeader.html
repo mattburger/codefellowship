@@ -1,5 +1,5 @@
 <!--https://css-snippets.com/simple-horizontal-navigation/-->
-<header th:fragment="header" xmlns:th="http://www.springframework.org/schema/security"
+<header th:fragment="loggedOffHeader" xmlns:th="http://www.springframework.org/schema/security"
         xmlns:sec="http://www.w3.org/1999/xhtml">
     <div class="nav">
         <ul>
@@ -9,16 +9,12 @@
             </li>
 
             <li>
-                <a href="/logout">Logout</a>
+                <a href="/login">login</a>
             </li>
-
             <li>
-                <a href="/myProfile">My Profile</a>
+                <a href="/signup">signup</a>
             </li>
-
             <li>
-                <a href="/createPost">Create Post</a>
-            </li>
 
         </ul>
 
