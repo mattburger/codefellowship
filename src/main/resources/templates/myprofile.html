@@ -17,17 +17,9 @@
             <li>DOB: <span th:text="${user.dateOfBirth}"></span></li>
             <li>Bio: <span th:text="${user.bio}"></span></li>
         </ul>
-        <h2>Possible Followees</h2>
-        <form method="POST" th:action="">
-            <select name="people">
-                <option
-                    th:each="peopleToFollow : ${peopleToFollow}"
-                    th:value="${peopleToFollow.id}"
-                    th:text="${peopleToFollow.username}"
-                >
-                </option>
-            </select>
-        </form>
+
+        <h2>Users you Follow</h2>
+
         <h2>My Posts</h2>
         <ul>
             <li th:each="post : ${posts}">
@@ -35,13 +27,6 @@
                 <span th:text="${post.body}"></span>
             </li>
         </ul>
-        <h2>Posts of People You Follow</h2>
-        <ul>
-            <li th:each="fp : ${followedPosts">
-                (<span th:text="${fp.createdAt}"></span>)
-                <span th:text="${fp.body}"></span>
-                 -<span th:text="${fp.username}"></span>
-            </li>
-        </ul>
+
     </body>
 </html>

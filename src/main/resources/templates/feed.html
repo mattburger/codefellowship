@@ -1,0 +1,16 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/headStuff :: headStuff">...</head>
+<body>
+<header th:replace="${principal == null } ? ~{/fragments/loggedOffHeader :: loggedOffHeader} : ~{/fragments/header :: header}">
+</header>
+
+<h1>Posts of People You Follow</h1>
+<ul>
+    <li th:each="fp : ${followedPosts">
+        (<span th:text="${fp.createdAt}"></span>)
+        <span th:text="${fp.body}"></span>
+        -<span th:text="${fp.username}"></span>
+    </li>
+</ul>
+</body>
+</html>
