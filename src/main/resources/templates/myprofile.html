@@ -25,12 +25,12 @@
             <input type="submit" />
         </form>
 
-<!--        <h2>Users To Follow</h2>-->
-<!--        <ul>-->
-<!--            <li th:each="usr : ${usrToFollow}">-->
-<!--                <a href="/user/${usr.id}"><span th:text="${usr.username}"></span></a>-->
-<!--            </li>-->
-<!--        </ul>-->
+        <h2>Users To Follow</h2>
+        <ul>
+            <li th:each="usr : ${usrToFollow}">
+                <a th:href="@{/user/{id}(id=${usr.id})}"><span th:text="${usr.username}"></span></a>
+            </li>
+        </ul>
 
         <h2>My Posts</h2>
         <ul>

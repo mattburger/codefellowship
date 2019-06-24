@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class AppUserController {
@@ -78,7 +75,13 @@ public class AppUserController {
         AppUser user = appUserRepository.findByUsername(p.getName() );
         List<AppUser> followed = new ArrayList<>(user.followedUsers);
         List<AppUser> allUsers = new ArrayList<>();
-        Set<AppUser> usersToFollow = user.followedUsers;
+        Iterable<AppUser> usersToFollowIterable = appUserRepository.findAll();
+        List<AppUser> usersToFollowList = new ArrayList<>();
+
+        for(AppUser i : usersToFollowIterable) {
+            usersToFollowList.add(i);
+        }
+        Set<AppUser> usersToFollow = new HashSet(usersToFollowList);
         usersToFollow.remove(user);
         usersToFollow.remove(user.followedUsers);
         List<AppUser> usrToFollow = new ArrayList<>(usersToFollow);
@@ -91,48 +94,48 @@ public class AppUserController {
         return "myprofile";
     }
 
-//    @GetMapping("/myProfile/feed")
-//    public String getMyFeed(Principal p, Model m) {
-//        AppUser user = appUserRepository.findByUsername(p.getName() );
-//        List<AppUser> followedUsers = new ArrayList<>(user.followedUsers);
-//        List<Post> followedPosts = new ArrayList<>();
-//        for(int i = 0; i < followedUsers.size(); i++) {
-//            for(int j = 0; i < followedUsers.get(i).posts.size(); j++ ) {
-//                followedPosts.add(followedUsers.get(i).posts.get(j));
-//            }
-//        }
-//        m.addAttribute("followedPosts", followedPosts );
-//        m.addAttribute("principal", p.getName());
-//
-//        return "feed";
-//    }
+    @GetMapping("/myProfile/feed")
+    public String getMyFeed(Principal p, Model m) {
+        AppUser user = appUserRepository.findByUsername(p.getName() );
+        List<AppUser> followedUsers = new ArrayList<>(user.followedUsers);
+        List<Post> followedPosts = new ArrayList<>();
+        for(int i = 0; i < followedUsers.size(); i++) {
+            for(int j = 0; i < followedUsers.get(i).posts.size(); j++ ) {
+                followedPosts.add(followedUsers.get(i).posts.get(j));
+            }
+        }
+        m.addAttribute("followedPosts", followedPosts );
+        m.addAttribute("principal", p.getName());
+
+        return "feed";
+    }
 
     @GetMapping("/users/{id}")
     public String getUserData(@PathVariable Long id, Model m, Principal p) {
         AppUser user = appUserRepository.findById(id).get();
 
-        if(user.username.equals(p.getName()) ){
-            return "myProfile";
-        }
+//        if(user.username.equals(p.getName()) ){
+//            return "myProfile";
+//        }
         m.addAttribute("user", user);
         m.addAttribute("principal", p.getName());
         return "users";
     }
 
-//    @PostMapping("/users/{id}follow")
-//    public RedirectView followUser(Principal p, Long userToFollowId, Model m) {
-//        AppUser currUser = appUserRepository.findByUsername(p.getName());
-//        AppUser userToFollow = appUserRepository.findById(userToFollowId).get();
-//
-//        if( userToFollow.username.equals(p.getName() ) ) {
-//
-//            throw new CannotFollowYourselfException("You cannot follow yourself.");
-//        }
-//        currUser.followedUsers.add(userToFollow);
-//        appUserRepository.save(currUser);
-//
-//        return new RedirectView("/myProfile/feed");
-//    }
+    @PostMapping("/users/{id}/follow")
+    public RedirectView followUser(Principal p, Long userToFollowId, Model m) {
+        AppUser currUser = appUserRepository.findByUsername(p.getName());
+        AppUser userToFollow = appUserRepository.findById(userToFollowId).get();
+
+        if( userToFollow.username.equals(p.getName() ) ) {
+
+            throw new CannotFollowYourselfException("You cannot follow yourself.");
+        }
+        currUser.followedUsers.add(userToFollow);
+        appUserRepository.save(currUser);
+
+        return new RedirectView("/myProfile/feed");
+    }
 
     @PostMapping("/createPost")
     public RedirectView createPost(Principal p, String body) {
