@@ -5,7 +5,9 @@
     <title>Log in to Lab 16 Demo</title>
 </head>
 <body>
-<header th:replace="${principal == null } ? ~{/fragments/loggedOffHeader :: loggedOffHeader} : ~{/fragments/header :: header}">
+<!--<header th:replace="${principal == null } ? ~{/fragments/loggedOffHeader :: loggedOffHeader} : ~{/fragments/header :: header}">-->
+
+<header th:replace="/fragments/header :: header">
 </header>
 <h1>Sign up</h1>
 <form action="/signup" method="POST">

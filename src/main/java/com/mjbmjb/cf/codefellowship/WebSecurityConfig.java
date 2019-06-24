@@ -5,6 +5,7 @@ import com.mjbmjb.cf.codefellowship.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -39,7 +40,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 
                     //allow requests to all URLs that match the patterns even if not logged in
-                    .antMatchers("/", "/login", "/signup", "/logoutSuccess","/*.css").permitAll()
+                    .antMatchers(HttpMethod.GET, "/*.css", "/").permitAll()
+                    .antMatchers("/login", "/signup", "/logoutSuccess").permitAll()
 
                     // anything else, you must be logged in
                     .anyRequest().authenticated()

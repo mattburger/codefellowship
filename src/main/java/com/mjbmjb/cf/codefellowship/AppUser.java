@@ -38,6 +38,8 @@ public class AppUser implements UserDetails {
         this.bio = bio;
     }
 
+    public long getId() { return this.id; }
+
     public String getFirstName() {
         return this.firstName;
     }

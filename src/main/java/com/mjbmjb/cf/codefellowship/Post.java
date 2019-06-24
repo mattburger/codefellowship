@@ -34,4 +34,6 @@ public class Post {
     public Date getCreatedAt() {
         return this.createdAt;
     }
+
+    public String getUsername() { return this.username; }
 }

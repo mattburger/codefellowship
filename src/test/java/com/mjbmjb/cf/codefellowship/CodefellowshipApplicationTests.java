@@ -24,9 +24,6 @@ public class CodefellowshipApplicationTests {
 	AppUserController appUserController;
 
 	@Autowired
-	CodefellowshipController codefellowshipController;
-
-	@Autowired
 	MockMvc mockMvc;
 
 	@Test

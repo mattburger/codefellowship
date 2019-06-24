@@ -1,12 +1,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/headStuff :: headStuff">...</head>
 <body>
-<header th:replace="${principal == null } ? ~{/fragments/loggedOffHeader :: loggedOffHeader} : ~{/fragments/header :: header}">
+<!--<header th:replace="${principal == null } ? ~{/fragments/loggedOffHeader :: loggedOffHeader} : ~{/fragments/header :: header}">-->
+
+<header th:replace="/fragments/header :: header">
 </header>
 
-<h1>Posts of People You Follow</h1>
+<h1><span th:text="${principal}"></span> Posts of People You Follow</h1>
 <ul>
-    <li th:each="fp : ${followedPosts">
+    <li th:each="fp : ${followedPosts}">
         (<span th:text="${fp.createdAt}"></span>)
         <span th:text="${fp.body}"></span>
         -<span th:text="${fp.username}"></span>
