@@ -21,7 +21,7 @@
     <li>Bio: <span th:text="${user.bio}"></span></li>
 </ul>
 
-<form action="/users/follow" method="POST">
+<form th:action="@{/users/{id}/follow(id=${user.id})}" method="POST">
     <input type="submit" value="Follow" />
 </form>
 

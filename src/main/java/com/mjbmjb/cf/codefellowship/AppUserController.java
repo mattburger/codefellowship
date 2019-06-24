@@ -100,7 +100,7 @@ public class AppUserController {
         List<AppUser> followedUsers = new ArrayList<>(user.followedUsers);
         List<Post> followedPosts = new ArrayList<>();
         for(int i = 0; i < followedUsers.size(); i++) {
-            for(int j = 0; i < followedUsers.get(i).posts.size(); j++ ) {
+            for(int j = 0; j < followedUsers.get(i).posts.size(); j++ ) {
                 followedPosts.add(followedUsers.get(i).posts.get(j));
             }
         }
@@ -123,9 +123,9 @@ public class AppUserController {
     }
 
     @PostMapping("/users/{id}/follow")
-    public RedirectView followUser(Principal p, Long userToFollowId, Model m) {
+    public RedirectView followUser(@PathVariable Long id, Principal p, Model m) {
         AppUser currUser = appUserRepository.findByUsername(p.getName());
-        AppUser userToFollow = appUserRepository.findById(userToFollowId).get();
+        AppUser userToFollow = appUserRepository.findById(id).get();
 
         if( userToFollow.username.equals(p.getName() ) ) {
 
@@ -134,7 +134,7 @@ public class AppUserController {
         currUser.followedUsers.add(userToFollow);
         appUserRepository.save(currUser);
 
-        return new RedirectView("/myProfile/feed");
+        return new RedirectView("/myProfile");
     }
 
     @PostMapping("/createPost")
