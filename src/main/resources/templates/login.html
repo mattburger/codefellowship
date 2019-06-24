@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/headStuff :: headStuff">...</head>
 <body>
-<header th:replace="${principal == null } ? ~{/fragments/loggedOffHeader :: loggedOffHeader} : ~{/fragments/header :: header}">
+<!--<header th:replace="${principal == null } ? ~{/fragments/loggedOffHeader :: loggedOffHeader} : ~{/fragments/header :: header}">-->
+<header th:replace="/fragments/header :: header">
 </header>
 
 <h1>Log in</h1>

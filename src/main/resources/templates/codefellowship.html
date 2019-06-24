@@ -4,9 +4,12 @@
 
     <body>
 
-        <header th:replace="${principal == null } ? ~{/fragments/loggedOffHeader :: loggedOffHeader} : ~{/fragments/header :: header}">
+<!--        <header th:replace="${principal == null } ? ~{/fragments/loggedOffHeader :: loggedOffHeader} : ~{/fragments/header :: header}">-->
+        <header th:replace="/fragments/header :: header">
         </header>
-        <h1>Welcome!</h1>
+        <h1>
+            <span th:if="${principal} != null"><span th:text="${principal}"></span></span> Welcome!
+        </h1>
         <p>
             This homepage is part of Code Fellows 401 Java lab 16 "Spring Auth".
         </p>

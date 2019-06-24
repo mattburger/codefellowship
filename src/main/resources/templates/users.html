@@ -1,10 +1,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/headStuff :: headStuff">...</head>
 <body>
-<header th:replace="${principal == null } ? ~{/fragments/loggedOffHeader :: loggedOffHeader} : ~{/fragments/header :: header}">
+<!--<header th:replace="${principal == null } ? ~{/fragments/loggedOffHeader :: loggedOffHeader} : ~{/fragments/header :: header}">-->
+
+<header th:replace="/fragments/header :: header">
 </header>
 
 <h1>User Page</h1>
+<p>Hello, <span th:text="${principal}"></span>!</p>
 <ul>
     <li>
         <img src="https://image.flaticon.com/icons/png/512/149/149071.png"
@@ -18,7 +21,9 @@
     <li>Bio: <span th:text="${user.bio}"></span></li>
 </ul>
 
-<h2>Users you Follow</h2>
+<form action="/users/follow" method="POST">
+    <input type="submit" value="Follow" />
+</form>
 
 <h2>My Posts</h2>
 <ul>
